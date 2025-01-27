@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Updating Steam"
-steamcmd +force_install_dir /data +login anonymous +app_update "2728330 -beta linuxbranch" +quit
+steamcmd +force_install_dir /data +login anonymous +app_update 2728330 -beta linuxbranch validate +quit
 
 echo ""
 echo ""
@@ -82,10 +82,10 @@ echo "Testing ${GEN_FUEL}"
 
 echo "Testing ${PICKUP_CLEANUP}"
 
-envsubst < settings.ini > TSSGame/GameServerSettings.ini
+envsubst < /settings.ini > /data/TSSGame/GameServerSettings.ini
 
 echo ""
 echo ""
 echo "Starting Server"
 
-TSSGameServer.sh
+/data/TSSGame/Binaries/Linux/TSSGameServer-Linux-Shipping TSSGame -log -port=7777 -queryport=27015 -steamservername="$SERVER_NAME"
